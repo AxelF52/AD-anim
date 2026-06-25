@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>atmodeco - AD'Anim - Animations d'Événements</title>
+    <style>
+        /* Palette de couleurs dynamique, chaleureuse et festive */
+        :root {
+            --primary: #FF4081;     /* Rose fuchsia dynamique */
+            --secondary: #00BCD4;   /* Bleu cyan éclatant */
+            --accent: #FFB300;      /* Jaune ambre chaleureux */
+            --text-dark: #2C3E50;   /* Bleu ardoise foncé pour une lecture confortable */
+            --bg-global: #FFFDF9;   /* Fond général crème très doux */
+            --bg-pink: #FFF0F5;     /* Section pourquoi - rose très tendre */
+            --bg-blue: #EBFBFF;     /* Section activités - bleu ciel très doux */
+            --bg-yellow: #fdf6b6;   /* Section pro - jaune pastel festif */
+            --bg-purple: #c7a8f8;   /* Section contact - violet pastel */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-global);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        /* En-tête / Hero Section */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+        }
+
+        header h2 {
+            font-size: 2rem;
+            color: var(--accent);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            font-weight: 600;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Style des sections avec couleurs alternées */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2.section-title {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        section h2.section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 0.8rem auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Section Pourquoi (Fond Rose Tendre) */
+        #pourquoi {
+            background-color: var(--bg-pink);
+            border-radius: 40px;
+            margin: 2rem auto;
+            max-width: 1240px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(255, 64, 129, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--primary);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 64, 129, 0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        /* Section Activités (Fond Bleu Ciel) */
+        #activites {
+            background-color: var(--bg-blue);
+            border-radius: 40px;
+            margin: 2rem auto;
+            max-width: 1240px;
+        }
+
+        .activities-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .activity-tag {
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.6rem 1.6rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.15);
+        }
+
+        .activity-tag:nth-child(even) {
+            background-color: var(--primary);
+            box-shadow: 0 4px 10px rgba(255, 64, 129, 0.15);
+        }
+
+        .activity-tag:nth-child(3n) {
+            background-color: var(--accent);
+            color: #333;
+            box-shadow: 0 4px 10px rgba(255, 179, 0, 0.15);
+        }
+
+        /* Image Unique Carrée */
+        .single-image-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .single-image-container img {
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 6px solid white;
+            transition: transform 0.4s ease;
+        }
+
+        .single-image-container img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        /* Section Pro (Fond Jaune Pastel) */
+        #pro {
+            background-color: var(--bg-yellow);
+            border-radius: 40px;
+            margin: 2rem auto;
+            max-width: 1240px;
+        }
+
+        .pro-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pro-content img {
+            width: 100%;
+            max-width: 650px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 6px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .pro-content p {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Section Contact & Infos */
+        #contact {
+            background-color: var(--bg-global);
+        }
+
+        .info-box {
+            background: var(--bg-purple);
+            padding: 4rem 2rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.04);
+            text-align: center;
+            border: 3px dashed var(--secondary);
+            max-width: 1260px;
+            margin: 0 auto;
+        }
+
+        .info-box p {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-details {
+            margin-top: 3rem;
+            background: #e4d5fc;
+            padding: 2rem;
+            border-radius: 20px;
+            display: inline-block;
+            min-width: 320px;
+        }
+
+        .contact-details h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .contact-details p {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .devis-text {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            box-shadow: 0 6px 20px rgba(255, 64, 129, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            font-size: 1rem;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        /* Responsive adaptation */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.8rem; }
+            section h2.section-title { font-size: 2rem; }
+            .single-image-container img {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>atmodeco - AD'Anim</h1>
+            <h2>L'animation de vos événements en toute sérénité !</h2>
+        </div>
+    </header>
+
+    <section id="pourquoi">
+        <div class="container">
+            <h2 class="section-title">Pourquoi me faire confiance ?</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="2.png" alt="Mariage festif et serein">
+                    <h3>Mariage Zen</h3>
+                    <p>Profitez de votre vin d'honneur et de votre soirée en toute tranquillité ! Afin de vous laisser profiter plainement de l'instant je vous propose des activités pour divertir vos enfants </p>
+                </div>
+                <div class="card">
+                    <img src="3.png" alt="Anniversaire enfants encadré">
+                    <h3>Anniversaires Canalisés</h3>
+                    <p>Un groupe d'enfants débordant d'énergie ? Pas de panique ! Je structure l'anniversaire avec des jeux captivants et des ateliers pour que la fête reste un plaisir, sans le chaos.</p>
+                </div>
+                <div class="card">
+                    <img src="4.png" alt="Événements familiaux et kermesses">
+                    <h3>Pour tous vos événements</h3>
+                    <p>Baptêmes, kermesses, arbres de Noël ou simples rassemblements familiaux... Je m'adapte à toutes les situations pour faire briller les yeux des petits.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="activites">
+        <div class="container">
+            <h2 class="section-title">Animations & Activités</h2>
+            <p style="text-align: center; font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Je compose votre événement sur-mesure avec un large choix d'options à la carte :
+            </p>
+            
+            <div class="activities-list">
+                <span class="activity-tag">🎈 Sculpture sur ballon</span>
+                <span class="activity-tag">🎨 Maquillage artistique</span>
+                <span class="activity-tag">🪅 Piñata personnalisée</span>
+                <span class="activity-tag">✂️ Atelier créatif</span>
+                <span class="activity-tag">🐺 Jeux en groupe (Loup-Garou...)</span>
+                <span class="activity-tag">🔬 Expériences scientifiques</span>
+                <span class="activity-tag">🌙 Soirée pyjama</span>
+            </div>
+
+            <!-- Image unique format carré -->
+            <div class="single-image-container">
+                <img src="11.png" alt="Activités d'animation pour événements">
+            </div>
+        </div>
+    </section>
+
+    <section id="pro">
+        <div class="container">
+            <div class="pro-content">
+                <h2 class="section-title">Professionnels et particuliers</h2>
+                <img src="10.png" alt="Animations commerciales de Noël">
+                <p>Vous souhaitez dynamiser votre espace de vente et attirer les familles pendant les périodes de fêtes ?</p>
+                <p><strong>atmodeco - AD'Anim</strong> vous propose durant la période de noël de profiter des même animations avec en option le déguisement de mère noël, pensez à réserver rapidement.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="info-box">
+                <h2 class="section-title">Informations & Tarifs</h2>
+                <p><strong>Zone d'intervention :</strong> Dijon et ses alentours</p>
+                <p><strong>Flexibilité totale :</strong> Choisissez librement vos horaires, vos activités et vos options.</p>
+                
+                <div class="contact-details">
+                    <h3>Me contacter :</h3>
+                    <p>📞 Téléphone : <strong>07 66 97 01 67</strong></p>
+                    <p>✉️ E-mail : <strong>atmodeco@free.fr</strong></p>
+                </div>
+
+                <br>
+                <div class="devis-text">Contactez-moi pour établir votre devis</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 atmodeco - AD'Anim. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
